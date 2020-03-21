@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Tic Tac Toe</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <div id="playerNames" style="display:block">
+            <h2 class="main-heading">Tic Tac Toe</h2>
+            <div class="playerNames">
+                <div class="firstDiv">
+                    <span id="firstPlayerName">Enter First Player Name :</span>
+                    <input type="text" id="firstPlayer" class="txt" />
+                </div>
+                <div class="secondDiv">
+                    <span id="secondPlayerName">Enter Second Player Name :</span>
+                    <input type="text" id="secondPlayer" class="txt" />
+                </div>
+               <div class="button">
+                    <button id="btn">Start</button>&nbsp;&nbsp;&nbsp;
+                    <a href="../" id="btn">Kembali</a></button>
+                </div>
+                <div>
+                    <h3 class="invite-frnd">Invite your friends</h3>
+                    <i class="fa fa-facebook fa-2x fe" style="padding: 5px 12px 5px 12px; color:white;margin-left: 370px;"></i>
+                    <i class="fa fa-instagram   fa-2x" style=" padding: 7px 9px 7px 9px; color:white;margin-left: 10px;"></i>
+                    <i class="fa fa-twitter   fa-2x" style="padding: 7px 9px 7px 9px; color:white;margin-left: 10px;"></i>
+
+                </div>
+            </div>
+        </div>
+        <div id="game" style="display: none">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+            <div class="line4"></div>
+            <div id="first"></div>
+            <div id="second"></div>
+            <div id="third"></div>
+            <div id="fourth"></div>
+            <div id="fifth"></div>
+            <div id="sixth"></div>
+            <div id="seventh"></div>
+            <div id="eight"></div>
+            <div id="nineth"></div>
+            <div>
+                <h1 id="playerMessage">playerMessage</h1>
+            </div>
+        </div>
+        <div id="winnerDiv" style="display: none" align="center">
+            <img src="emoji_emoticon_sticker_man_gentleman_award_win-512.png" height="10%" width="30%" alt="" class="winnerEmoji" />
+            <h2 class="winnerHeading">Winner is <span id="winnerName"></span></h2>
+            <br><br><br>
+            <a href="../game" id="btn">Try again</a></button>
+        </div>
+    </div>
+    <script>
+        var firstPlayerName = document.getElementById('firstPlayer');
+        var secondPlayerName = document.getElementById('secondPlayer');
+        var firstButton = document.getElementById('btn');
+        var firstDiv = document.getElementById('playerNames');
+        var secondDiv = document.getElementById('game');
+        var thirdDiv = document.getElementById('winnerDiv');
+        var playerMessage = document.getElementById('playerMessage');
+        var first = document.getElementById('first');
+        var second = document.getElementById('second');
+        var third = document.getElementById('third');
+        var fourth = document.getElementById('fourth');
+        var fifth = document.getElementById('fifth');
+        var sixth = document.getElementById('sixth');
+        var seventh = document.getElementById('seventh');
+        var eight = document.getElementById('eight');
+        var nineth = document.getElementById('nineth');
+        var winnerName = document.getElementById('winnerName');
+        var turn = 1;
+        var score = 1;
+        var arr = [];
+        firstButton.onclick = function() {
+            firstDiv.style.display = "none";
+            secondDiv.style.display = "block";
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            turn++;
+
+
+        }
+        first.onclick = function() {
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            first.innerHTML = checkScore(score);
+            arr[0] = checkScore(score);
+            console.log(arr[0]);
+            if (arr[0] == arr[1] && arr[0] == arr[2]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[0], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[0] == arr[3] && arr[0] == arr[6]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[0], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[0] == arr[4] && arr[0] == arr[8]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[0], firstPlayerName.value, secondPlayerName.value);
+            } else {
+                score++;
+                turn++;
+            }
+        }
+        second.onclick = function() {
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            second.innerHTML = checkScore(score);
+            arr[1] = checkScore(score);
+            if (arr[1] == arr[0] && arr[1] == arr[2]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[1], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[1] == arr[4] && arr[1] == arr[7]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[1], firstPlayerName.value, secondPlayerName.value);
+            } else {
+                score++;
+                turn++;
+            }
+        }
+        third.onclick = function() {
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            third.innerHTML = checkScore(score);
+            arr[2] = checkScore(score);
+            if (arr[2] == arr[1] && arr[2] == arr[0]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[2], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[2] == arr[5] && arr[2] == arr[8]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[2], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[2] == arr[4] && arr[2] == arr[6]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[2], firstPlayerName.value, secondPlayerName.value);
+            } else {
+                score++;
+                turn++;
+            }
+        }
+        fourth.onclick = function() {
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            fourth.innerHTML = checkScore(score);
+            arr[3] = checkScore(score);
+            if (arr[3] == arr[0] && arr[3] == arr[6]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[3], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[3] == arr[4] && arr[3] == arr[5]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[3], firstPlayerName.value, secondPlayerName.value);
+            } else {
+                score++;
+                turn++;
+            }
+        }
+        fifth.onclick = function() {
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            fifth.innerHTML = checkScore(score);
+            arr[4] = checkScore(score);
+            if (arr[4] == arr[3] && arr[4] == arr[5]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[4], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[4] == arr[1] && arr[4] == arr[7]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[4], firstPlayerName.value, secondPlayerName.value);
+            } 
+            else if (arr[4] == arr[0] && arr[4] == arr[8]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[4], firstPlayerName.value, secondPlayerName.value);
+            } 
+            else if (arr[4] == arr[2] && arr[4] == arr[6]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[4], firstPlayerName.value, secondPlayerName.value);
+            } 
+            else {
+                score++;
+                turn++;
+            }
+        }
+        sixth.onclick = function() {
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            sixth.innerHTML = checkScore(score);
+            arr[5] = checkScore(score);
+            if (arr[5] == arr[4] && arr[5] == arr[3]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[5], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[5] == arr[2] && arr[5] == arr[8]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[5], firstPlayerName.value, secondPlayerName.value);
+            } else {
+                score++;
+                turn++;
+            }
+        }
+        seventh.onclick = function() {
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            seventh.innerHTML = checkScore(score);
+            arr[6] = checkScore(score);
+            if (arr[6] == arr[3] && arr[6] == arr[0]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[6], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[6] == arr[7] && arr[6] == arr[8]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[6], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[6] == arr[4] && arr[6] == arr[2]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[6], firstPlayerName.value, secondPlayerName.value);
+            } else {
+                score++;
+                turn++;
+            }
+        }
+        eight.onclick = function() {
+            playerMessage.innerHTML = checkTurn(turn, firstPlayerName.value, secondPlayerName.value);
+            eight.innerHTML = checkScore(score);
+            arr[7] = checkScore(score);
+            if (arr[7] == arr[4] && arr[7] == arr[1]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[7], firstPlayerName.value, secondPlayerName.value);
+            } else if (arr[7] == arr[6] && arr[7] == arr[8]) {
+                secondDiv.style.display = "none";
+                thirdDiv.style.display = "block";
+                winnerName.innerHTML = checkWinner(arr[7], firstPlayerName.value, secondPlayerName.value);
+            } else {
+                score++;
+                turn++;
+            }
+        }
+
+        function checkTurn(check, firstPlayer, secondPlayer) {
+            if (check % 2 != 0) {
+                return firstPlayer.toUpperCase() + " it's your turn...";
+            } else {
+                return secondPlayer.toUpperCase() + " it's your turn...";
+            }
+        }
+
+        function checkScore(score) {
+            if (score % 2 != 0) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+        function checkWinner(number,firstPlayer,secondPlayer){
+            if(number==0){
+                return firstPlayer.toUpperCase();
+            }
+            else{
+                return secondPlayer.toUpperCase();
+            }
+        }
+
+    </script>
+</body>
+
+</html>
