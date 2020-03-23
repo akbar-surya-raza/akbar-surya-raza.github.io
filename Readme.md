@@ -1,1 +1,1 @@
-Demo:https://akbar-fast-page.org
+Demo:http://akbar-fast-page.org
